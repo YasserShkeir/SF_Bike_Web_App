@@ -340,7 +340,7 @@ def Task2():
             test_bday=st.text_input('Member Birth Year:')
             
         with test2_col2:
-            test_date=st.date_input('Choose starting date:', min_value=datetime.date(2017,1,1))
+            test_date=st.date_input('Choose starting date:', min_value=datetime.date(datetime.datetime(2017, 1, 1)))
             test_bkid=st.selectbox('Choose bike ID:', np.unique(df['bike_id']).astype('int32'))
             test_gndr=st.selectbox('Member Gender:', ('Male', 'Female'))
 
