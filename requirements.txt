@@ -3,4 +3,3 @@ sklearn
 numpy
 pydeck
 plotly.express
-math
