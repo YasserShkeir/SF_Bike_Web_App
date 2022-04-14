@@ -43,7 +43,8 @@ with col3:
         st.session_state['bool_t3']=True     
 
 def Task1():
-    data_money = pd.read_csv('task1_data_Edited_Money.csv')
+    url = 'https://media.githubusercontent.com/media/YasserShkeir/SF_Bike_Web_App/main/task1_data_Edited_Money.csv'
+    data_money = pd.read_csv(url)
     data_money["Start_Date"] = pd.to_datetime(data_money["Start_Date"], format="%d/%m/%Y").dt.date
     data_money.sort_values("Start_Date", inplace=True)
 
