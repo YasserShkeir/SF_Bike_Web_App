@@ -43,7 +43,8 @@ with col3:
         st.session_state['bool_t3']=True     
 
 def Task1():
-    data_money = pd.read_csv("https://drive.google.com/file/d/16SxhjfMCLRX8zkych2ymG8RL0uHeW7H1/view?usp=sharing")
+    url1 = 'https://drive.google.com/file/d/16SxhjfMCLRX8zkych2ymG8RL0uHeW7H1/view?usp=sharing'
+    data_money = pd.read_csv(url1)
     data_money["Start_Date"] = pd.to_datetime(data_money["Start_Date"], format="%d/%m/%Y").dt.date
     data_money.sort_values("Start_Date", inplace=True)
 
