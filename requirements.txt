@@ -3,5 +3,5 @@ sklearn
 numpy
 pydeck
 plotly.express
-matplotlib.pyplot
+matplotlib
 math
