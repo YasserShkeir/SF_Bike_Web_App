@@ -1,6 +1,7 @@
 from datetime import datetime
 import pandas as pd
 import numpy as np
+import datetime as dt
 import pydeck as pdk
 import plotly.express as px
 import matplotlib.pyplot as plt
@@ -377,9 +378,9 @@ def Task2():
 
         predict_data['start_time'] = predict_data['start_time'].apply(to_time)
 
-        dt = pd.to_datetime(predict_data['start_date'] + predict_data['start_time'])
+        grouped_dt = pd.to_datetime(predict_data['start_date'] + predict_data['start_time'])
         predict_data.drop(['start_date','start_time'], axis=1, inplace=True)
-        predict_data.insert(0, 'start_time', dt)
+        predict_data.insert(0, 'start_time', grouped_dt)
 
         ###
 
