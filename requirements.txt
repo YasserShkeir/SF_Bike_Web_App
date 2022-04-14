@@ -1,0 +1,7 @@
+pandas
+sklearn
+numpy
+pydeck
+plotly.express
+matplotlib.pyplot
+math
