@@ -4,4 +4,3 @@ numpy
 pydeck
 plotly.express
 matplotlib
-math
