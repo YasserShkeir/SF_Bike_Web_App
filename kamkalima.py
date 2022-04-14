@@ -262,7 +262,7 @@ def Task2():
     # Task 2
     # """)
     st.header("Predicting a trip duration based on user input, using RandomForestRegressor:")
-    df = pd.read_csv('https://drive.google.com/file/d/1cX1VCcUH7TODu90fxZpRwAOWbc3SBrO4/view?usp=sharing')
+    df = pd.read_csv('https://media.githubusercontent.com/media/YasserShkeir/SF_Bike_Web_App/main/task2_data.csv')
     df["start_time"] = pd.to_datetime(df["start_time"])
     
     st.write("Sample of the data:", df.iloc[0:1000])
@@ -291,7 +291,7 @@ def Task2():
     ###
 
     ### Editing eval data
-    eval_df = pd.read_csv('https://drive.google.com/file/d/1p0IoumrWmjGf_gY4YkvD-comdZPI6qxz/view?usp=sharing')
+    eval_df = pd.read_csv('https://media.githubusercontent.com/media/YasserShkeir/SF_Bike_Web_App/main/task2_eval.csv')
     eval_df=eval_df.dropna()
     eval_df["start_time"] = pd.to_datetime(eval_df["start_time"])
     eval_df = eval_df.replace(cleanup_vals)
