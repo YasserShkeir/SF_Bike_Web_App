@@ -343,7 +343,8 @@ def Task2():
         with test2_col2:
             minDate = dt.date(2017,1,1)
             maxDate = dt.date(2019,12,12)
-            test_date=st.date_input('Choose starting date:', min_value=minDate, max_value=maxDate)
+            defDate = dt.date(2017,10,10)
+            test_date=st.date_input('Choose starting date:', min_value=minDate, max_value=maxDate, value=defDate)
             test_bkid=st.selectbox('Choose bike ID:', np.unique(df['bike_id']).astype('int32'))
             test_gndr=st.selectbox('Member Gender:', ('Male', 'Female'))
 
