@@ -44,7 +44,7 @@ with col3:
         st.session_state['bool_t3']=True     
 
 def Task1():
-    data_money = pd.read_csv("C:/Users/Lenovo/Desktop/Kamkalima Project/Task 1/Task 1 Money Data/task1_data_Edited_Money.csv")
+    data_money = pd.read_csv('https://drive.google.com/file/d/16SxhjfMCLRX8zkych2ymG8RL0uHeW7H1/view?usp=sharing')
     data_money["Start_Date"] = pd.to_datetime(data_money["Start_Date"], format="%d/%m/%Y").dt.date
     data_money.sort_values("Start_Date", inplace=True)
 
@@ -291,7 +291,7 @@ def Task2():
     ###
 
     ### Editing eval data
-    eval_df = pd.read_csv('C:/Users/Lenovo/Desktop/Kamkalima Project/Task 3/task2_eval/task2_eval.csv')
+    eval_df = pd.read_csv('https://drive.google.com/file/d/1cX1VCcUH7TODu90fxZpRwAOWbc3SBrO4/view?usp=sharing')
     eval_df=eval_df.dropna()
     eval_df["start_time"] = pd.to_datetime(eval_df["start_time"])
     eval_df = eval_df.replace(cleanup_vals)
