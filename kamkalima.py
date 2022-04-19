@@ -80,8 +80,7 @@ def Task1():
 
     def money_view():
         st.header("Money Section:")
-        st.write("Sample of the Data:")
-        st.write(data_money.iloc[0:1001])
+        st.write("Sample of the Data:", data_money.iloc[0:501])
 
         data_money_cust = data_money.loc[(data_money['user_type'] == 'Customer')]
         data_money_subs = data_money.loc[(data_money['user_type'] == 'Subscriber')]
@@ -125,6 +124,48 @@ def Task1():
         subs_chart_data = data_money_subs.groupby(["Start_Date"]).sum().reset_index()
         cust_chart_date = data_money_cust.groupby(["Start_Date"]).sum().reset_index()
 
+        st.write('Profit Analysis:')
+
+        cm_col1, cm_col2 = st.columns(2)
+
+        ans1 = cust_chart_date['trip_price'].sum()
+        ans2 = subs_chart_data[('price_per_trip', '')].sum()
+        sum_ans = ans1 + ans2
+
+        df_pie = {
+            'User':['Customers','Subscribers'],
+            'Overall Profit':[ans1, ans2],
+            'Profit %':[(ans1/sum_ans)*100, (ans2/sum_ans)*100]
+        }
+
+        df_pie = pd.DataFrame(df_pie)
+
+        fig_pie = px.pie(df_pie, values='Profit %', names='User', title='Profit Distribution based on User Type')
+
+        with cm_col1:
+            st.plotly_chart(fig_pie)
+
+        subs_hist = data_money_subs.groupby(['member_gender']).sum().reset_index()
+        cust_hist = data_money_cust.groupby(['member_gender']).sum().reset_index()
+
+        df_hist = {
+            'User':['Subscribers','Subscribers','Subscribers','Subscribers','Customers','Customers','Customers','Customers'],
+            'Gender':['Female','Male','No Answer','Other','Female','Male','No Answer','Other'],
+            'Overall Profit':
+            [subs_hist[('price_per_trip', '')][0],subs_hist[('price_per_trip', '')][1],subs_hist[('price_per_trip', '')][2],subs_hist[('price_per_trip', '')][3],
+             cust_hist['trip_price'][0],cust_hist['trip_price'][1],cust_hist['trip_price'][2],cust_hist['trip_price'][3]]
+        }
+
+        df_hist = pd.DataFrame(df_hist)
+
+        fig_hist = px.histogram(df_hist, x="Gender", y="Overall Profit",
+             color='User', barmode='group',
+             height=400, title='Profit based on User Type and Gender')
+
+        with cm_col2:
+            st.plotly_chart(fig_hist)
+        ###
+
         fig, ax = plt.subplots(1, figsize=(12,5))
 
         plt.plot(cust_chart_date['Start_Date'], cust_chart_date['trip_price'], label="Customers Daily Profit",markersize=1, color='r', linewidth=1)
@@ -132,7 +173,7 @@ def Task1():
         plt.plot(subs_chart_data['Start_Date'], cust_chart_date['trip_price']+subs_chart_data[('price_per_trip', '')], label="All Users Daily Profit",markersize=1, color='g', linewidth=1)
         plt.legend(loc="upper right")
 
-        st.write('Here we can see the daily, monthly, and yearly profit trends of the business')
+        st.write('Here we can see the daily profit trends of the business')
         st.plotly_chart(fig)
 
     def station_insights():
