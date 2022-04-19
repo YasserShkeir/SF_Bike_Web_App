@@ -45,7 +45,7 @@ with col3:
         st.session_state['bool_t3']=True     
 
 def Task1():
-    url = 'https://media.githubusercontent.com/media/YasserShkeir/SF_Bike_Web_App/main/task1_data_Edited_Money.csv'
+    url = 'task1_data_Edited_Money.csv'
     data_money = pd.read_csv(url)
     data_money["Start_Date"] = pd.to_datetime(data_money["Start_Date"], format="%d/%m/%Y").dt.date
     data_money.sort_values("Start_Date", inplace=True)
@@ -131,8 +131,6 @@ def Task1():
         plt.plot(subs_chart_data['Start_Date'], subs_chart_data[('price_per_trip', '')], label="Subscribers Daily Profit",markersize=1, color='b', linewidth=1)
         plt.plot(subs_chart_data['Start_Date'], cust_chart_date['trip_price']+subs_chart_data[('price_per_trip', '')], label="All Users Daily Profit",markersize=1, color='g', linewidth=1)
         plt.legend(loc="upper right")
-
-        plt.show()
 
         st.write('Here we can see the daily, monthly, and yearly profit trends of the business')
         st.plotly_chart(fig)
@@ -264,7 +262,7 @@ def Task2():
     # Task 2
     # """)
     st.header("Predicting a trip duration based on user input, using RandomForestRegressor:")
-    df = pd.read_csv('https://media.githubusercontent.com/media/YasserShkeir/SF_Bike_Web_App/main/task2_data.csv')
+    df = pd.read_csv('task2_data.csv')
     df["start_time"] = pd.to_datetime(df["start_time"])
     
     st.write("Sample of the data:", df.iloc[0:1000])
@@ -292,20 +290,20 @@ def Task2():
         df[column] = pd.to_numeric(df[column], downcast='float')
     ###
 
-    ### Editing eval data
-    eval_df = pd.read_csv('https://media.githubusercontent.com/media/YasserShkeir/SF_Bike_Web_App/main/task2_eval.csv')
-    eval_df=eval_df.dropna()
-    eval_df["start_time"] = pd.to_datetime(eval_df["start_time"])
-    eval_df = eval_df.replace(cleanup_vals)
-    eval_df = eval_df.drop(['start_station_name'], axis=1)
-    for column in eval_df:
-        eval_df[column] = pd.to_numeric(eval_df[column], downcast='float')
+    ### Editing eval data (NOT NEEDED)
+    # eval_df = pd.read_csv('task2_eval.csv')
+    # eval_df=eval_df.dropna()
+    # eval_df["start_time"] = pd.to_datetime(eval_df["start_time"])
+    # eval_df = eval_df.replace(cleanup_vals)
+    # eval_df = eval_df.drop(['start_station_name'], axis=1)
+    # for column in eval_df:
+    #     eval_df[column] = pd.to_numeric(eval_df[column], downcast='float')
     ###
 
     y=df['duration_sec']
     x=df.drop('duration_sec',axis=1)
     
-    x_train,x_test,y_train,y_test=tts(x,y,test_size=len(eval_df)/length_data_model)
+    x_train,x_test,y_train,y_test=tts(x,y,test_size=0.2)
 
     # st.write(
     #     'eval_df: '+ str(len(eval_df)),eval_df,
