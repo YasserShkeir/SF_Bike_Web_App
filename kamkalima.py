@@ -278,7 +278,6 @@ def Task1():
 
         fig1 = px.bar(data_fleet_week_day, x='week_day', y='duration_min', title='Overall rental time for each week day')
         fig2 = px.bar(data_fleet_week_day, x='week_day', y='trip_count', title='Overall trip count for each week day')
-        
 
         with col1:
             data_fleet_count = data_fleet.groupby(['bike_id']).sum().reset_index().sort_values(by=['trip_count'], ascending=False)
